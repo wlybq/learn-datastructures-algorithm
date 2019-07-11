@@ -1,12 +1,13 @@
 package cn.chenshiwu121.stack;
 
+import cn.chenshiwu121.utils.CalcUtils;
+
 public class Calculator {
 
 	public static void main(String[] args) {
 		String expression = "7000+2*6-200";
 		Stack<Integer> numberStack = new ArrayStackWrapper<Integer>();
 		Stack<Character> operStack = new ArrayStackWrapper<Character>();
-		ArrayStackWrapper<Character> operTools = (ArrayStackWrapper<Character>)operStack;
 		int index = 0, 
 			len = expression.length(), 
 			n, m, res;
@@ -15,20 +16,20 @@ public class Calculator {
 		
 		while (true) {
 			ch = expression.charAt(index++);
-			if (operTools.isOper(ch)) {
+			if (CalcUtils.isOper(ch)) {
 				if (!operStack.isEmpty()) {
-					if (operTools.getPriority(ch) <= operTools.getPriority(operStack.peek())) {
+					if (CalcUtils.getPriority(ch) <= CalcUtils.getPriority(operStack.peek())) {
 						m = numberStack.pop();
 						n = numberStack.pop();
 						oper = operStack.pop();
-						res = operTools.calc(n, m, oper);
+						res = CalcUtils.calc(n, m, oper);
 						numberStack.push(res);
 					}
 				}
 				operStack.push(ch);
 			} else {
 				sbuf += ch;
-				if (index >= len || operTools.isOper(expression.charAt(index))) {					
+				if (index >= len || CalcUtils.isOper(expression.charAt(index))) {					
 					numberStack.push(Integer.parseInt(sbuf));
 					sbuf = "";
 				}
@@ -41,7 +42,7 @@ public class Calculator {
 			m = numberStack.pop();
 			n = numberStack.pop();
 			oper = operStack.pop();
-			res = operTools.calc(n, m, oper);
+			res = CalcUtils.calc(n, m, oper);
 			numberStack.push(res);
 		}
 		System.out.printf("%s=%s", expression, numberStack.pop());

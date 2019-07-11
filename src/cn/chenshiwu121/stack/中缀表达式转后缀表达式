@@ -8,7 +8,7 @@
 4.遇到运算符时，比较器与operStack栈定运算符的优先级：
 	1).如果operStack为空，或栈顶运算符为左括号"("，将直接将此运算符入栈；
 	2).否则，若优先级比栈顶运算符的高，也记那个运算符压入operStack；
-	3).否则，将operStack战地的运算符弹出压入midResultStack中，再次转到(4-1)与operStack中新的栈顶运算符相比较；
+	3).否则，将operStack栈的运算符弹出压入midResultStack中，再次转到(4-1)与operStack中新的栈顶运算符相比较；
 5.遇到括号时：
 	1).如果是左括号"("，则直接压入operStack；
 	2).如果是右括号")"，则依次弹出operStack栈顶的运算符，并压入midResultStack，直到遇到左括号为止，此时将这一对括号丢弃；
