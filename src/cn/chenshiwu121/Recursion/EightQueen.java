@@ -1,12 +1,12 @@
 package cn.chenshiwu121.Recursion;
 
-public class EightQueue {
+public class EightQueen {
 	
 	private int max = 8;
 	private int[] arr = new int[max];
 	
 	public static void main(String[] args) {
-		 EightQueue q = new EightQueue();
+		EightQueen q = new EightQueen();
 //		 q.print();
 		 q.run(0);
 	}
