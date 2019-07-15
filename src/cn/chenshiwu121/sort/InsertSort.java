@@ -26,7 +26,7 @@ public class InsertSort {
 				arr[insertIndex + 1] = arr[insertIndex];
 				insertIndex--;
 			}
-			if (insertIndex + 1 != i) { // 优化：如果insetIndex+1不等于i说明有发生过交换，所以，只有发生了交换才做更新				
+			if (insertIndex + 1 != i) {	
 				arr[insertIndex + 1] = insertVal;
 			}
 		}
