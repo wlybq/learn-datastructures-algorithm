@@ -60,11 +60,11 @@ public class TreeNode<T> implements Tree<T> {
 	@Override
 	public void midOrder() {
 		if (left != null) {
-			left.preOrder();
+			left.midOrder();
 		}
 		System.out.println(obj);
 		if (right != null) {
-			right.preOrder();
+			right.midOrder();
 		}
 	}
 	
@@ -72,10 +72,10 @@ public class TreeNode<T> implements Tree<T> {
 	@Override
 	public void rearOrder() {
 		if (left != null) {
-			left.preOrder();
+			left.rearOrder();
 		}
 		if (right != null) {
-			right.preOrder();
+			right.rearOrder();
 		}
 		System.out.println(obj);
 	}
@@ -119,36 +119,32 @@ public class TreeNode<T> implements Tree<T> {
 		if (s.judge(obj)) return obj;
 		return result;
 	}
+	/**
+	 * 删除节点
+	 */
 	@Override
 	public boolean delNode(Compare<T> s) {
 		TreeNode<T> temp = null;
+		boolean flag = false;
+		
 		if (left != null && s.judge(left.getObj())) {
-			if (left.getLeft() != null) {
-				temp = left.getLeft();
-				if (left.getRight() != null) {
-					temp.setRight(left.getRight());
-				}
-			}
-			if (left.getRight() != null) {
+			temp = left.getLeft();
+			// 被删除节点的左节点为空且被删除节点的右节点不为空
+			if (temp == null && left.getRight() != null) {
 				temp = left.getRight();
 			}
 			setLeft(temp);
 			return true;
 		}
 		if (right != null && s.judge(right.getObj())) {
-			if (right.getLeft() != null) {
-				temp = right.getLeft();
-				if (right.getRight() != null) {
-					temp.setRight(right.getRight());
-				}
-			}
-			if (right.getRight() != null) {
+			temp = right.getLeft();
+			// 被删除节点的左节点为空且被删除节点的右节点不为空
+			if (temp == null && right.getRight() != null) {
 				temp = right.getRight();
 			}
 			setRight(temp);
 			return true;
 		}
-		boolean flag = false;
 		if (left != null) {
 			flag = left.delNode(s);
 		}

@@ -54,14 +54,16 @@ public class TreeTest {
 //		});
 //		System.out.println(temp);
 		
-		binaryTree.preOrder();
-		binaryTree.delNode(new Compare<Hero>() {
-			@Override
-			public boolean judge(Hero obj) {
-				return obj.getNo() == 3;
-			}
-		});
-		System.out.println("===========");
-		binaryTree.preOrder();
+//		binaryTree.midOrder();
+//		binaryTree.delNode(new Compare<Hero>() {
+//			@Override
+//			public boolean judge(Hero obj) {
+//				return obj.getNo() == 3;
+//			}
+//		});
+//		System.out.println("===========");
+//		binaryTree.midOrder();
+		
+		
 	}
 }
