@@ -1,6 +1,4 @@
-package cn.chenshiwu121.tree.binaryTree;
-
-import cn.chenshiwu121.tree.Compare;
+package cn.chenshiwu121.tree;
 
 public interface Tree<T> {
 	void preOrder(); // 前序遍历

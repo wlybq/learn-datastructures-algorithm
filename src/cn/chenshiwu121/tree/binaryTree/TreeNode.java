@@ -1,11 +1,14 @@
 package cn.chenshiwu121.tree.binaryTree;
 
 import cn.chenshiwu121.tree.Compare;
+import cn.chenshiwu121.tree.Tree;
 
 public class TreeNode<T> implements Tree<T> {
 	private TreeNode<T> left;
 	private TreeNode<T> right;
 	private T obj;
+	private int leftType = 0; // 指向左节点类型 0-子节点树 1-前驱节点
+	private int rightType = 0; // 指向右节点类型 0-子节点树 1-后继节点
 	
 	public TreeNode() {
 		super();
@@ -37,6 +40,18 @@ public class TreeNode<T> implements Tree<T> {
 	}
 	public void setObj(T obj) {
 		this.obj = obj;
+	}
+	public int getLeftType() {
+		return leftType;
+	}
+	public void setLeftType(int leftType) {
+		this.leftType = leftType;
+	}
+	public int getRightType() {
+		return rightType;
+	}
+	public void setRightType(int rightType) {
+		this.rightType = rightType;
 	}
 	
 	@Override

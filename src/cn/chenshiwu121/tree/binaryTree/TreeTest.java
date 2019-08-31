@@ -1,10 +1,15 @@
 package cn.chenshiwu121.tree.binaryTree;
 
 import cn.chenshiwu121.tree.Hero;
-import cn.chenshiwu121.tree.Compare;
+
+import org.junit.Test;
+
+//import cn.chenshiwu121.tree.Compare;
 
 public class TreeTest {
-	public static void main(String[] args) {
+	
+	@Test
+	public void test1() {
 		BinaryTree<Hero> binaryTree = new BinaryTree<Hero>();
 		Hero hero1 = new Hero(1, "宋江");
 		Hero hero2 = new Hero(2, "吴用");
@@ -63,7 +68,33 @@ public class TreeTest {
 //		});
 //		System.out.println("===========");
 //		binaryTree.midOrder();
-		
-		
 	}
+
+	@Test
+	public void test2() {
+		TreeNode<Integer> root = new TreeNode<Integer>(1);
+		TreeNode<Integer> node2 = new TreeNode<Integer>(3);
+		TreeNode<Integer> node3 = new TreeNode<Integer>(8);
+		TreeNode<Integer> node4 = new TreeNode<Integer>(10);
+		TreeNode<Integer> node5 = new TreeNode<Integer>(6);
+		TreeNode<Integer> node6 = new TreeNode<Integer>(14);
+		
+		root.setLeft(node2);
+		root.setRight(node5);
+		node2.setLeft(node3);
+		node2.setRight(node4);
+		node5.setLeft(node6);
+		
+		ThreadedBinaryTree<Integer> threadedBinaryTree = new ThreadedBinaryTree<Integer>();
+		threadedBinaryTree.setRoot(root);
+		
+//		threadedBinaryTree.threadedMidNodes();
+//		threadedBinaryTree.threadedPreNodes();
+		threadedBinaryTree.threadedRearNodes();
+//		System.out.println(node4.getLeft());
+//		System.out.println(node4.getRight());
+		
+		threadedBinaryTree.threadedMidOrder();
+	}
+	
 }

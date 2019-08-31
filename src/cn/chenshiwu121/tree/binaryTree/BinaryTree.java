@@ -1,6 +1,7 @@
 package cn.chenshiwu121.tree.binaryTree;
 
 import cn.chenshiwu121.tree.Compare;
+import cn.chenshiwu121.tree.Tree;
 
 public class BinaryTree<T> implements Tree<T> {
 	private TreeNode<T> root;
