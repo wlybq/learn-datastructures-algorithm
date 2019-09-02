@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class HuffmanCode {
 	
+	private HuffmanCode() throws Exception {
+		throw new Exception("can't call constructor method.");
+	}
+	
 	// 根据byte数组生成node列表
 	public static List<Node> getNodes(byte[] arr) {
 		List<Node> nodes = new ArrayList<Node>();
@@ -63,6 +67,7 @@ public class HuffmanCode {
 		}
 	}
 	
+	// 压缩
 	public static byte[] zip(byte[] src, Map<Byte, String> huffmanCodeMap) {
 		StringBuilder builder = new StringBuilder();
 		byte[] huffmanCodeBytes;
@@ -84,6 +89,7 @@ public class HuffmanCode {
 		return huffmanCodeBytes;
 	}
 
+	// 压缩，简单调用
 	public static byte[] huffmanZip(byte[] src) {
 		List<Node> nodes = getNodes(src);
 		Node huffmanTreeRootNode = createHuffmanTree(nodes);
@@ -99,6 +105,4 @@ public class HuffmanCode {
 			root.preOrder();
 		}
 	}
-	
-	
 }
