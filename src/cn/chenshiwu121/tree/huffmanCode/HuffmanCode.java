@@ -8,8 +8,14 @@ import java.util.Map;
 
 public class HuffmanCode {
 	
+	private static Map<Byte, String> codeMap;
+
 	private HuffmanCode() throws Exception {
 		throw new Exception("can't call constructor method.");
+	}
+	
+	public static Map<Byte, String> getCodeMap() {
+		return codeMap;
 	}
 	
 	// 根据byte数组生成node列表
@@ -68,13 +74,14 @@ public class HuffmanCode {
 	}
 	
 	// 压缩
-	public static byte[] zip(byte[] src, Map<Byte, String> huffmanCodeMap) {
+	public static byte[] zip(Map<Byte, String> codeMap, byte[] src) {
 		StringBuilder builder = new StringBuilder();
 		byte[] huffmanCodeBytes;
 		int len;
 		for (byte b : src) {
-			builder.append(huffmanCodeMap.get(b));
+			builder.append(codeMap.get(b));
 		}
+//		System.out.println(builder);// =============编码后code=================
 		len = builder.length();
 		huffmanCodeBytes = new byte[(int) Math.ceil(len / 8.0)];
 		for (int i = 0; i < huffmanCodeBytes.length; i++) {
@@ -85,7 +92,7 @@ public class HuffmanCode {
 			}
 			String temp = builder.substring(index, divVal);
 			huffmanCodeBytes[i] = (byte) Integer.parseInt(temp, 2);
-		}
+		}	
 		return huffmanCodeBytes;
 	}
 
@@ -93,12 +100,58 @@ public class HuffmanCode {
 	public static byte[] huffmanZip(byte[] src) {
 		List<Node> nodes = getNodes(src);
 		Node huffmanTreeRootNode = createHuffmanTree(nodes);
-		Map<Byte, String> codeMap = createHuffmanCodeMap(huffmanTreeRootNode);
-		return zip(src, codeMap);
+		codeMap = createHuffmanCodeMap(huffmanTreeRootNode);
+		return zip(codeMap, src);
+	}
+	
+	// 解压，核心方法
+	public static byte[] decode(Map<Byte, String> codeMap, byte[] src) {
+		StringBuilder builder = new StringBuilder();
+		Map<String, Byte> map = new HashMap<String, Byte>();
+		List<Byte> list = new ArrayList<Byte>();
+		byte[] bytes = null;
+		for (int i = 0; i < src.length; i++)
+			builder.append(byteToBitString(i != src.length - 1, src[i]));
+//		System.out.println(builder);// =============解码后code=================
+		for (Map.Entry<Byte, String> entry : codeMap.entrySet())
+			map.put(entry.getValue(), entry.getKey());
+		for (int i = 0; i < builder.length();) {
+			int count = 1;
+			Byte b = null;
+			while (true) {
+				String key = builder.substring(i, i + count);
+				if (map.containsKey(key)) {
+					b = map.get(key);
+					break;
+				} else {
+					count++;
+				}
+			}
+			list.add(b);
+			i += count;
+		}
+		bytes = new byte[list.size()];
+		for (int i = 0; i < bytes.length; i++) {
+			bytes[i] = list.get(i);
+		}
+		return bytes;
+	}
+	
+	// 解压，简单调用
+	public static byte[] decode(byte[] src) {
+		return decode(codeMap, src);
+	}
+	
+	// 根据byte获取对应的二进制补码
+	public static String byteToBitString(boolean flag, byte b) {
+		int temp = b;
+		if (flag) temp |= 256;
+		String bitStr = Integer.toBinaryString(temp);
+		return flag ? bitStr.substring(bitStr.length() - 8) : bitStr;
 	}
 	
 	// 前序打印
-	public void preOrder(Node root) {
+	public static void preOrder(Node root) {
 		if (root == null) {
 			System.out.println("[]");
 		} else {
