@@ -58,6 +58,29 @@ public class Node {
 		System.out.println(this);
 		if (right != null) right.midOrder();
 	}
+	
+	public Node search(int val) {
+		if (value == val) return this;
+		if (value > val && left != null) return left.search(val);
+		if (value < val && right != null) return right.search(val);
+		return null;
+	}
+	
+	public Node searchParent(int val) {
+		if (left != null) {
+			if (left.getValue() == val) {
+				return this;
+			}
+			if (val < value) return left.searchParent(val);
+		}
+		if (right != null) {
+			if (right.getValue() == val) {
+				return this;
+			}
+			if (val > value) return right.searchParent(val);
+		}
+		return null;
+	}
 
 	@Override
 	public String toString() {
