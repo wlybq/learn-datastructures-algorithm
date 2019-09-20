@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.binaryTree;
+package cn.chenshiwu121.tree.binary;
 
 import cn.chenshiwu121.tree.Hero;
 

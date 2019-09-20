@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.binarySortTree;
+package cn.chenshiwu121.tree.binarySort;
 
 public class BinarySortTreeTest {
 
@@ -10,6 +10,13 @@ public class BinarySortTreeTest {
 		}
 		tree.midOrder();
 		tree.remove(1);
+		tree.remove(2);
+		tree.remove(3);
+		tree.remove(5);
+		tree.remove(7);
+		tree.remove(9);
+		tree.remove(12);
+		tree.remove(10);
 		System.out.println("===================");
 		tree.midOrder();
 	}

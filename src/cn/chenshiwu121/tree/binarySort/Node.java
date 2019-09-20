@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.binarySortTree;
+package cn.chenshiwu121.tree.binarySort;
 
 public class Node {
 

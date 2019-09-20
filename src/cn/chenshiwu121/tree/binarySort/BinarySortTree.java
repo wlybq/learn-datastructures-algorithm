@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.binarySortTree;
+package cn.chenshiwu121.tree.binarySort;
 
 public class BinarySortTree {
 	private Node root;
@@ -74,16 +74,24 @@ public class BinarySortTree {
 			// 删除有一个子节点的节点
 			} else {
 				if (targetNode.getLeft() != null) {
-					if (parent.getLeft().getValue() == val) {
-						parent.setLeft(targetNode.getLeft());
+					if (parent != null) {
+						if (parent.getLeft().getValue() == val) {
+							parent.setLeft(targetNode.getLeft());
+						} else {
+							parent.setRight(targetNode.getLeft());
+						}
 					} else {
-						parent.setRight(targetNode.getLeft());
+						root = targetNode.getLeft();
 					}
 				} else {
-					if (parent.getLeft().getValue() == val) {
-						parent.setLeft(targetNode.getRight());
+					if (parent != null) {
+						if (parent.getLeft().getValue() == val) {
+							parent.setLeft(targetNode.getRight());
+						} else {
+							parent.setRight(targetNode.getRight());
+						}
 					} else {
-						parent.setRight(targetNode.getRight());
+						root = targetNode.getRight();
 					}
 				}
 			}

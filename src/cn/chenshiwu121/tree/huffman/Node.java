@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.huffmanTree;
+package cn.chenshiwu121.tree.huffman;
 
 public class Node implements Comparable<Node> {
 

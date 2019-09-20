@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.arrBinaryTree;
+package cn.chenshiwu121.tree.arrBinary;
 
 import cn.chenshiwu121.tree.Compare;
 import cn.chenshiwu121.tree.Tree;

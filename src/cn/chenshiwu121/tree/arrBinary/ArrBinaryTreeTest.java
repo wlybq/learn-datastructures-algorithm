@@ -1,4 +1,4 @@
-package cn.chenshiwu121.tree.arrBinaryTree;
+package cn.chenshiwu121.tree.arrBinary;
 
 public class ArrBinaryTreeTest {
 	public static void main(String[] args) {
