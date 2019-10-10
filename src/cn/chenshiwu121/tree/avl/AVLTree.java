@@ -33,6 +33,14 @@ public class AVLTree {
 		else root.midOrder();
 	}
 	
+	public int leftLength() {
+		return root.leftLenght();
+	}
+	
+	public int rightLenght() {
+		return root.rightLenght();
+	}
+	
 	public Node search(int val) {
 		if (root == null) return null;
 		return root.search(val);

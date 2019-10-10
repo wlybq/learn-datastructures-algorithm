@@ -50,6 +50,36 @@ public class Node {
 		return Math.max(left == null ? 0 : left.length(), right == null ? 0 : right.length()) + 1;
 	}
 	
+	private void leftRotate() {
+		// 以当前节点value创建新节点
+		Node newNode = new Node(value);
+		// 将新节点的左子树设置为当前节点的左子树
+		newNode.setLeft(left);
+		// 将新结点的右子树设置为当前节点的右子树的左子树
+		newNode.setRight(right.getLeft());
+		// 将当前接节点的值设置为当前节点的右子树的值
+		value = right.getValue();
+		// 将当前节点的右子树设置为当前接节点的右子树的右子树
+		right = right.getRight();
+		// 当前节点的左子树设置为新的节点
+		left = newNode;
+	}
+	
+	private void rightRotate() {
+		// 以当前节点的value创建新节点
+		Node newNode = new Node(value);
+		// 将新结点的右子树设置为当前节点的右子树
+		newNode.setRight(right);
+		// 将新结点的左子树设置为当前节点的左子树的右子树
+		newNode.setLeft(left.getRight());
+		// 设置当前节点的值为当前节点的左子树的值
+		value = left.getValue();
+		// 设置当前节点的左子树为当前节点的左子树的左子树
+		left = left.getLeft();
+		// 设置当前节点的右子树为新节点
+		right = newNode;
+	}
+	
 	public void add(Node node) {
 		if (node == null) return;
 		if (value > node.getValue()) {
@@ -64,6 +94,21 @@ public class Node {
 			} else {
 				right = node;
 			}
+		}
+		// 如果右子树高度比左子树高度大1
+		if (rightLenght() - leftLenght() > 1) {
+			// 如果右子树的左子树高度比右子树的右子树高度大，那么，右子树需要右旋转一次  
+			if (right.leftLenght() - right.rightLenght() > 0) {
+				right.rightRotate();
+			}
+			// 左旋转
+			leftRotate();
+		}
+		if (leftLenght() - rightLenght() > 1) {
+			if (left.rightLenght() - left.leftLenght() > 0) {
+				left.leftRotate();
+			}
+			rightRotate();
 		}
 	}
 	
