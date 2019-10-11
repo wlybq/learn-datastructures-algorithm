@@ -103,12 +103,14 @@ public class Node {
 			}
 			// 左旋转
 			leftRotate();
+			return;
 		}
 		if (leftLenght() - rightLenght() > 1) {
 			if (left.rightLenght() - left.leftLenght() > 0) {
 				left.leftRotate();
 			}
 			rightRotate();
+			return;
 		}
 	}
 	

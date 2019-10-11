@@ -15,6 +15,13 @@ public class AVLTreeTest {
 		System.out.println(tree.getRoot().length());
 		System.out.println(tree.leftLength());
 		System.out.println(tree.rightLenght());
+//		System.out.println(tree.getRoot());
+//		System.out.println(tree.getRoot().getLeft());
+//		System.out.println(tree.getRoot().getLeft().getLeft());
+//		System.out.println(tree.getRoot().getLeft().getRight());
+//		System.out.println(tree.getRoot().getRight());
+//		System.out.println(tree.getRoot().getRight().getLeft());
+//		System.out.println(tree.getRoot().getRight().getRight());
 	}
 
 }
